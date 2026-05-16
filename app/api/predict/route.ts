@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
   console.log('Sending logs to ML service:', logs?.length, 'logs')
 
   try {
-    const mlResponse = await fetch(`${process.env.ML_SERVICE_URL}/predict`, {
+    const mlResponse = await fetch(`https://downtime-intel.onrender.com/predict`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ machine_id: machineId, downtime_logs: logs }),
