@@ -1,6 +1,12 @@
 import { createClient } from '@/lib/supabase'
 import { NextRequest, NextResponse } from 'next/server'
 
+export async function GET() {
+  return NextResponse.json({ 
+    ml_url: process.env.ML_SERVICE_URL || 'NOT SET'
+  })
+}
+
 export async function POST(req: NextRequest) {
   const supabase = createClient()
   const body = await req.json()
