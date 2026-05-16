@@ -36,7 +36,7 @@ export default function DowntimeChart({ logs }: { logs: DowntimeLog[] }) {
         <Tooltip
           contentStyle={{ background: '#18181b', border: '1px solid #3f3f46', borderRadius: 8 }}
           labelStyle={{ color: '#a1a1aa' }}
-          formatter={(value: number) => [`₹${value.toLocaleString()}`, 'Cost']}
+          formatter={(value) => [`₹${Number(value).toLocaleString()}`, 'Cost']}
         />
         <Area type="monotone" dataKey="cost" stroke="#ef4444" fill="url(#costGrad)" strokeWidth={2} />
       </AreaChart>
