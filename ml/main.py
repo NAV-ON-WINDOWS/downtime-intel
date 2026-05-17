@@ -19,10 +19,17 @@ class PredictRequest(BaseModel):
     downtime_logs: list
 
 @app.on_event("startup")
+@app.on_event("startup")
 def startup():
-    if not os.path.exists("model.pkl"):
+    if os.path.exists("model_azure.pkl"):
+        print("Loading existing Azure model...")
+    elif os.path.exists("model.pkl"):
+        print("Loading existing model...")
+    elif os.path.exists("ai4i2020.csv"):
         print("Training model on startup...")
         train_model()
+    else:
+        print("No model or training data found - predictions will return insufficient_data")
 
 @app.get("/")
 def root():

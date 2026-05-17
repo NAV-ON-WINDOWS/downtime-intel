@@ -88,16 +88,11 @@ def train_model():
     return model
 
 def load_model():
-    if os.path.exists(MODEL_PATH):
-        print("Loading existing model...")
-        return joblib.load(MODEL_PATH)
-    if os.path.exists(TRAINING_DATA):
-        return train_model()
-    # Fallback to AI4I model if Azure data not available
-    if os.path.exists("ai4i2020.csv"):
-        print("Azure data not found, falling back to AI4I training...")
-        return train_model_ai4i()
-    raise Exception("No training data found")
+    if os.path.exists("model_azure.pkl"):
+        return joblib.load("model_azure.pkl")
+    if os.path.exists("model.pkl"):
+        return joblib.load("model.pkl")
+    raise Exception("No trained model found")
 
 def predict_next_failure(machine_id: str, downtime_logs: list):
     if len(downtime_logs) < 3:
