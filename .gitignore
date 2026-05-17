@@ -44,3 +44,11 @@ next-env.d.ts
 ml/venv/
 ml/model.pkl
 ml/__pycache__/
+ml/PdM_telemetry.csv
+ml/PdM_failures.csv
+ml/PdM_errors.csv
+ml/PdM_machines.csv
+ml/PdM_maint.csv
+ml/ai4i2020.csv
+ml/validate_azure.py
+ml/validate.py
