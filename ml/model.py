@@ -116,11 +116,9 @@ def predict_next_failure(machine_id: str, downtime_logs: list):
     total_days = max(1, (df['started_at'].iloc[-1] - df['started_at'].iloc[0]).days)
     frequency = len(df) / total_days * 30
 
-    # Map downtime patterns to Azure-style sensor features
-    # Higher frequency/duration = worse sensor readings
     severity = min(1.0, (avg_duration / 120) * (frequency / 10))
 
-    features = pd.DataFrame([{
+    feature_dict = {
         'volt_roll3_mean': 170 - severity * 10,
         'volt_roll3_std': 2 + severity * 5,
         'volt_roll24_mean': 170 - severity * 8,
@@ -138,7 +136,10 @@ def predict_next_failure(machine_id: str, downtime_logs: list):
         'vibration_roll24_mean': 40 + severity * 15,
         'vibration_roll24_std': 5 + severity * 8,
         'error_count': min(10, frequency * severity)
-    }])
+    }
+
+    feature_cols = get_feature_cols()
+    features = pd.DataFrame([[feature_dict[col] for col in feature_cols]], columns=feature_cols)
 
     proba = model.predict_proba(features)[0][1]
 
