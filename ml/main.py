@@ -45,5 +45,5 @@ def predict(req: PredictRequest):
             "predicted_duration_minutes": 0,
             "confidence_score": 0.0,
             "risk_level": "insufficient_data",
-            "model_version": "rf-v1"
+            "model_version": "rf-v1-ERROR:" + str(e)[:50]
         }
