@@ -19,17 +19,27 @@ class PredictRequest(BaseModel):
     downtime_logs: list
 
 @app.on_event("startup")
-@app.on_event("startup")
 def startup():
-    if os.path.exists("model_azure.pkl"):
-        print("Loading existing Azure model...")
-    elif os.path.exists("model.pkl"):
-        print("Loading existing model...")
+    import requests, joblib, pandas as pd
+    url = os.environ.get("SUPABASE_URL")
+    key = os.environ.get("SUPABASE_SERVICE_KEY")
+    if url and key:
+        print("Fetching logs from Supabase...")
+        resp = requests.get(
+            f"{url}/rest/v1/downtime_logs?select=*&limit=1000",
+            headers={"apikey": key, "Authorization": f"Bearer {key}"}
+        )
+        if resp.status_code == 200 and resp.json():
+            print(f"Fetched {len(resp.json())} logs — training model...")
+            train_model()
+            print("Model trained and ready.")
+        else:
+            print(f"Supabase fetch failed: {resp.status_code}")
     elif os.path.exists("ai4i2020.csv"):
-        print("Training model on startup...")
+        print("Training model from local CSV...")
         train_model()
     else:
-        print("No model or training data found - predictions will return insufficient_data")
+        print("No model or training data found")
 
 @app.get("/")
 def root():
