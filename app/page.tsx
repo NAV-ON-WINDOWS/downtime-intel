@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
+import Link from "next/link";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 interface Particle {
@@ -837,14 +838,13 @@ export default function LandingPage() {
           ))}
         </div>
 
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <button className="ghost-btn" style={{ padding: "8px 16px", fontSize: "0.85rem" }}>
-            Sign in
-          </button>
-          <button className="shimmer-btn" style={{ padding: "8px 18px", fontSize: "0.85rem" }}>
-            Start free
-          </button>
-        </div>
+        <Link
+          href="/dashboard"
+          className="shimmer-btn"
+          style={{ padding: "8px 18px", fontSize: "0.85rem" }}
+        >
+          Start free
+        </Link>
       </nav>
 
       {/* ── HERO ── */}
@@ -877,7 +877,9 @@ export default function LandingPage() {
               <HeroCostTicker />
 
               <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-                <button className="shimmer-btn">Start Free</button>
+                <Link href="/dashboard">
+                  <button className="shimmer-btn">Start Free</button>
+                </Link>
                 <button className="ghost-btn">See Live Demo</button>
               </div>
             </div>
@@ -1265,9 +1267,13 @@ export default function LandingPage() {
             <p style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.5)", marginBottom: "2.5rem" }}>
               Every day without Downtime Intel is another day of preventable losses.
             </p>
-            <button className="shimmer-btn" style={{ fontSize: "1.05rem", padding: "16px 36px" }}>
-              Start Free Today — No credit card required
-            </button>
+              <Link
+                href="/dashboard"
+                className="shimmer-btn"
+                style={{ fontSize: "1.05rem", padding: "16px 36px" }}
+              >
+                Start Free Today — No credit card required
+              </Link>
           </div>
         </ScrollReveal>
       </section>
