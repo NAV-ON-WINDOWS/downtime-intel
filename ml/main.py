@@ -20,26 +20,12 @@ class PredictRequest(BaseModel):
 
 @app.on_event("startup")
 def startup():
-    import requests, joblib, pandas as pd
-    url = os.environ.get("SUPABASE_URL")
-    key = os.environ.get("SUPABASE_SERVICE_KEY")
-    if url and key:
-        print("Fetching logs from Supabase...")
-        resp = requests.get(
-            f"{url}/rest/v1/downtime_logs?select=*&limit=1000",
-            headers={"apikey": key, "Authorization": f"Bearer {key}"}
-        )
-        if resp.status_code == 200 and resp.json():
-            print(f"Fetched {len(resp.json())} logs — training model...")
-            train_model()
-            print("Model trained and ready.")
-        else:
-            print(f"Supabase fetch failed: {resp.status_code}")
-    elif os.path.exists("ai4i2020.csv"):
-        print("Training model from local CSV...")
-        train_model()
+    if os.path.exists("model_azure.pkl"):
+        print("model_azure.pkl found — ready.")
+    elif os.path.exists("model.pkl"):
+        print("model.pkl found — ready.")
     else:
-        print("No model or training data found")
+        print("No model found — predictions will return insufficient_data")
 
 @app.get("/")
 def root():
