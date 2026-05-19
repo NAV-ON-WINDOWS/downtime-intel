@@ -890,7 +890,6 @@ export default function LandingPage() {
                 <Link href="/dashboard">
                   <button className="shimmer-btn">Start Free</button>
                 </Link>
-                <button className="ghost-btn">See Live Demo</button>
               </div>
             </div>
 
