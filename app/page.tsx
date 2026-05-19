@@ -837,15 +837,7 @@ export default function LandingPage() {
             </button>
           ))}
         </div>
-
-        <Link
-          href="/dashboard"
-          className="shimmer-btn"
-          style={{ padding: "8px 18px", fontSize: "0.85rem" }}
-        >
-          Start free
-        </Link>
-
+        
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
   
         <button
@@ -854,7 +846,14 @@ export default function LandingPage() {
         >
           Sign in
         </button>
-        
+
+        <Link
+          href="/dashboard"
+          className="shimmer-btn"
+          style={{ padding: "8px 18px", fontSize: "0.85rem" }}
+        >
+          Start free
+        </Link>
       </div>
       </nav>
 
