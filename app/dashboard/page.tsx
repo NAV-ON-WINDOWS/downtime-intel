@@ -24,12 +24,11 @@ export default function Dashboard() {
     })
   }, [])
 
-  const worst = worstMachine(machines, logs)
-  const thisMonth = logs.filter(l => {
-    const d = new Date(l.started_at)
-    const now = new Date()
-    return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear()
-  })
+const worst = worstMachine(machines, logs)
+
+const thisMonth = logs
+
+
 
   if (loading) {
     return (
