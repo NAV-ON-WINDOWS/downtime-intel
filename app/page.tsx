@@ -845,6 +845,17 @@ export default function LandingPage() {
         >
           Start free
         </Link>
+
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+  
+        <button
+          className="ghost-btn"
+          style={{ padding: "8px 16px", fontSize: "0.85rem" }}
+        >
+          Sign in
+        </button>
+        
+      </div>
       </nav>
 
       {/* ── HERO ── */}
