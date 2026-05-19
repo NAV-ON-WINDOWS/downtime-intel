@@ -203,7 +203,7 @@ function TypewriterHeadline() {
     <h1
       style={{
         fontSize: "clamp(2.4rem, 5.5vw, 4.5rem)",
-        fontWeight: 900,
+        fontWeight: 225,
         lineHeight: 1.08,
         letterSpacing: "-0.03em",
         color: "#fff",
