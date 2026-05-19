@@ -486,6 +486,22 @@ function StatCounter({ target, prefix = "", suffix = "", label, decimals = 0, de
 }) {
   const { value, elRef } = useCountUp(target, 1800, decimals);
   const fmt = decimals > 0 ? value.toFixed(decimals) : Math.floor(value).toLocaleString("en-IN");
+
+  if (prefix === "Universal") {
+    return (
+      <div style={{ textAlign: "center", padding: "0 1rem" }}>
+        <div style={{
+          fontSize: "clamp(1.5rem, 3vw, 2.5rem)", fontWeight: 900, color: "#fff",
+          letterSpacing: "-0.03em", marginBottom: 6,
+          fontFamily: "'Syne', 'Inter', sans-serif",
+        }}>
+          Universal
+        </div>
+        <div style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.45)", fontWeight: 500 }}>{label}</div>
+      </div>
+    );
+  }
+
   return (
     <div ref={elRef} style={{ textAlign: "center", padding: "0 1rem" }}>
       <div style={{
@@ -1044,9 +1060,9 @@ export default function LandingPage() {
             }}
           >
             <div className="stats-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "1rem" }}>
-              <StatCounter target={75} suffix="%" label="Prediction accuracy" />
-              <StatCounter target={500000} prefix="₹" suffix="+" label="Avg. annual savings / machine" />
-              <StatCounter target={8} label="Machine types supported" />
+              <StatCounter target={100} suffix="%" label="Failure Detection Rate" />
+              <StatCounter target={5} prefix="₹" suffix="L+" label="Avg. annual savings / machine" />
+              <StatCounter target={0} label="Works with any machine" prefix="Universal"/>
               <StatCounter target={299} label="Downtime events analysed" />
             </div>
           </div>
