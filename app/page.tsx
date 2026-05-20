@@ -1060,7 +1060,7 @@ export default function LandingPage() {
             }}
           >
             <div className="stats-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "1rem" }}>
-              <StatCounter target={100} suffix="%" label="Failure Detection Rate" />
+              <StatCounter target={98.1} suffix="%" label="9119/9300 tests classified correctly" />
               <StatCounter target={5} prefix="₹" suffix="L+" label="Avg. annual savings / machine" />
               <StatCounter target={0} label="Works with any machine" prefix="Universal"/>
               <StatCounter target={299} label="Downtime events analysed" />
